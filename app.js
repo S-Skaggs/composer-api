@@ -5,7 +5,6 @@ var logger = require('morgan');
 const createError = require('http-errors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 // Create a reference to the express middleware
 var app = express();
@@ -17,7 +16,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // Method to generate a 404 status for any request without a matching route
 app.use((req, res, next) => {
@@ -25,9 +23,9 @@ app.use((req, res, next) => {
 });
 
 /*
-    Error-handling middleware always takes four arguments. 
-    You must provide four arguments to identify it as an error-handling middleware function. 
-    Even if you don’t need to use the next object, you must specify it to maintain the signature. 
+    Error-handling middleware always takes four arguments.
+    You must provide four arguments to identify it as an error-handling middleware function.
+    Even if you don’t need to use the next object, you must specify it to maintain the signature.
     Otherwise, the next object will be interpreted as regular middleware and will fail to handle errors.
 */
 app.use((err, req, res, next) => {
