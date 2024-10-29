@@ -134,4 +134,22 @@ router.post('/', async function(req, res, next) {
   }
 });
 
+/*
+  Can test this route from a second terminal using the below command twice
+  node -e "http.request('http://localhost:3000/1', {method:'delete', headers:{'content-type': 'application/json'}}, (res) => console.log(res.statusCode)).end()"
+*/
+router.delete('/:id', async function(req, res, next) {
+  try {
+    const id = await composerService.deleteComposer(req.params.id);
+
+    res.json({ id });
+  } catch(err) {
+    console.error(err);
+    if(err.message === 'Composer not found in the database') {
+      return next(createError(404, err.message));
+    }
+    next(err);
+  }
+});
+
 module.exports = router;
