@@ -27,7 +27,7 @@ function createComposerService() {
   // Retrieve a specific composer by ID
   async function getComposerById(id) {
     if(!database.hasOwnProperty(id)) {
-      throw new error('Composer not found in the database');
+      throw new Error('Composer not found in the database');
     }
 
     return database[id];
@@ -36,7 +36,7 @@ function createComposerService() {
   // Add a new composer to the database
   async function addComposer(id, data) {
     if(database.hasOwnProperty(id)) {
-      throw new error('Composer with this ID already exists');
+      throw new Error('Composer with this ID already exists');
     }
 
     database[id] = data;
@@ -46,7 +46,7 @@ function createComposerService() {
   // Update an existing composer in the database
   async function modifyComposer(id, data) {
     if(!database.hasOwnProperty(id)) {
-      throw new error('Composer not found in the database');
+      throw new Error('Composer not found in the database');
     }
 
     database[id] = data;
@@ -56,7 +56,7 @@ function createComposerService() {
   // Delete a composer from the database
   async function deleteComposer(id) {
     if(!database.hasOwnProperty(id)) {
-      throw new error('Composer not found in the database');
+      throw new Error('Composer not found in the database');
     }
 
     delete database[id];
